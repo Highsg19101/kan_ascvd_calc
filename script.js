@@ -1,29 +1,43 @@
 function calculate() {
-  const weight = parseFloat(document.getElementById('weight').value);
-  const heightCm = parseFloat(document.getElementById('height').value);
-  const waistCm = parseFloat(document.getElementById('waist').value);
-
   const resultDiv = document.getElementById('result');
-  resultDiv.innerText = '';  // 초기화
+  resultDiv.innerText = '';
 
-  // 키와 체중이 기본적으로 필요함
-  if (!weight || !heightCm || weight <= 0 || heightCm <= 0) {
-    resultDiv.innerText = 'Please enter valid weight and height.';
+  // 라디오 입력값 가져오기
+  const sex = document.querySelector('input[name="sex"]:checked');
+  const smk = document.querySelector('input[name="smk"]:checked');
+  const diabetes = document.querySelector('input[name="diabetes"]:checked');
+  const htn = document.querySelector('input[name="htn"]:checked');
+
+  // 숫자 입력값 가져오기
+  const age = parseFloat(document.getElementById('age').value);
+  const sysbp = parseFloat(document.getElementById('sysbp').value);
+  const totchole = parseFloat(document.getElementById('totchole').value);
+  const hdlchole = parseFloat(document.getElementById('hdlchole').value);
+
+  // 유효성 검사
+  if (!sex || !smk || !diabetes || !htn ||
+      isNaN(age) || isNaN(sysbp) || isNaN(totchole) || isNaN(hdlchole)) {
+    resultDiv.innerText = 'Please fill in all required fields.';
     return;
   }
 
-  const heightM = heightCm / 100;
-  const bmi = weight / (heightM * heightM);
-  const bmiRounded = bmi.toFixed(2);
-
-  // 허리 둘레가 없는 경우: BMI만 계산
-  if (!waistCm || waistCm <= 0) {
-    resultDiv.innerText = `Your BMI is ${bmiRounded}.`;
-  } else {
-    // BRI 계산
-    const waistRatio = (waistCm / (2 * Math.PI)) / (0.5 * heightCm);
-    const bri = 364.2 - 365.5 * Math.sqrt(1 - Math.pow(waistRatio, 2));
-    const briRounded = bri.toFixed(2);
-    resultDiv.innerText = `Your BRI is ${briRounded}.`;
+  if (age < 30 || age > 90) {
+    resultDiv.innerText = 'Age must be between 30 and 90.';
+    return;
   }
+
+  const total = KANcalculateTotalValues({ sex, smk, diabetes, htn, age, sysbp, totchole, hdlchole });
+
+  resultDiv.innerText = `Your total score is: ${total}%`;
+}
+
+
+function KANcalculateTotalValues({ sex, smk, diabetes, htn, age, sysbp, totchole, hdlchole }) {
+  return (
+    parseInt(sex.value) +
+    parseInt(smk.value) +
+    parseInt(diabetes.value) +
+    parseInt(htn.value) +
+    age + sysbp + totchole + hdlchole
+  );
 }

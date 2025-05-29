@@ -282,82 +282,57 @@
 
    <div class="form-group">
     <label for="sysbp">Systolic BP:</label>
-      <div class="iunput-wrapper">
+      <div class="input-wrapper">
         <input type="number" id="sysbp" placeholder="(mmHg)" required>
       </div>
   </div>
 
-     <div class="form-group">
-    <label for="weight">Weight:</label>
-      <div class="iunput-wrapper">
-        <input type="number" id="weight" placeholder="Weight (kg)" required>
+  <div class="form-group">
+    <label for="totchole">Total cholesterol:</label>
+      <div class="input-wrapper">
+        <input type="number" id="totchole" placeholder="(mg/dL)" required>
       </div>
   </div>
 
+  <div class="form-group">
+    <label for="hdlchole">HDL cholesterol:</label>
+      <div class="input-wrapper">
+        <input type="number" id="hdlchole" placeholder="(mg/dL)" required>
+      </div>
+  </div>
 
-  <input type="number" id="height" placeholder="Height (cm)" required><br>
-  <input type="number" id="waist" placeholder="Waist Circumference (cm, optional)"><br><br>
+  <div class="form-group">
+    <label for="smk">Smoking:</label>
+    <div class="radio-options">
+      <label>Yes<input type="radio" name="smk" value="1" required></label>
+      <label>No<input type="radio" name="smk" value="0"></label>
+    </div>
+  </div>
 
-  <button type="submit">Calculate</button>
+  <div class="form-group">
+    <label for="diabetes">Diabetes:</label>
+    <div class="radio-options">
+      <label>Yes<input type="radio" name="diabetes" value="1" required></label>
+      <label>No<input type="radio" name="diabetes" value="0"></label>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="htn">Hypertension:</label>
+    <div class="radio-options">
+      <label>Yes<input type="radio" name="htn" value="1" required></label>
+      <label>No<input type="radio" name="htn" value="0"></label>
+    </div>
+  </div>
+
+  <button type="submit" style="padding: 15px 30px; font-size: 18px;">Calculate</button>
   <div id="result" class="result" style="margin-top:10px; font-weight:bold;"></div>
+
 </form>
 
-<script>
-  function calculate() {
-    const resultDiv = document.getElementById('result');
-    resultDiv.innerText = '';
 
-    // 성별, 당뇨 여부, 나이 가져오기
-    const sex = document.querySelector('input[name="sex"]:checked');
-    const diabetes = document.querySelector('input[name="diabetes"]:checked');
-    const age = parseInt(document.getElementById('age').value);
+<script src="script.js"></script>
 
-    const weight = parseFloat(document.getElementById('weight').value);
-    const heightCm = parseFloat(document.getElementById('height').value);
-    const waistCm = parseFloat(document.getElementById('waist').value);
-
-    // 유효성 검사
-    if (!sex || !diabetes || isNaN(age) || isNaN(weight) || isNaN(heightCm)) {
-      resultDiv.innerText = 'Please fill in all required fields.';
-      return;
-    }
-
-    // 범위 검사
-    if (age < 40 || age > 79) {
-      resultDiv.innerText = 'Age must be between 40 and 79.';
-      return;
-    }
-    if (weight <= 30 || weight >= 200) {
-      resultDiv.innerText = 'Weight must be between 30 and 200 kg.';
-      return;
-    }
-    if (heightCm <= 100 || heightCm >= 250) {
-      resultDiv.innerText = 'Height must be between 100 and 250 cm.';
-      return;
-    }
-    if (waistCm && (waistCm <= 40 || waistCm >= 160)) {
-      resultDiv.innerText = 'Waist circumference must be between 40 and 160 cm.';
-      return;
-    }
-
-    const heightM = heightCm / 100;
-    const bmi = weight / (heightM * heightM);
-    const bmiRounded = bmi.toFixed(2);
-
-    // 예시 결과 출력
-    if (!waistCm || waistCm <= 0) {
-      resultDiv.innerText = `Your BMI is ${bmiRounded}.`;
-    } else {
-      const waistRatio = (waistCm / (2 * Math.PI)) / (0.5 * heightCm);
-      const bri = 364.2 - 365.5 * Math.sqrt(1 - Math.pow(waistRatio, 2));
-      const briRounded = bri.toFixed(2);
-      resultDiv.innerText = `Your BRI is ${briRounded}.`;
-    }
-
-    // 향후 여기에 ASCVD 계산기 로직 추가 가능
-    // console.log("sex:", sex.value, "diabetes:", diabetes.value, "age:", age);
-  }
-</script>
   <!-- Image -->
   <figure class="image-container">
     <img src="./baseline_character.png" alt="Baseline characteristics" />
