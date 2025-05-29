@@ -1,49 +1,375 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BMI & BRI Calculator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>KAN-ASCVD Calculator</title>
   <style>
     body {
-      font-family: Arial;
-      max-width: 500px;
-      margin: 50px auto;
-      padding: 0 20px;
-    }
-    h1 {
+      font-family: Arial, sans-serif;
       text-align: center;
+      margin: 0 auto;
+      padding: 20px;
+      max-width: 800px;
+      background-color: #f9f9f9;
     }
-    input, button {
-      padding: 10px;
-      margin: 8px 0;
+
+    h1 {
+      font-size: 32px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .title-highlight-red {
+      color: #b30000;
+    }
+
+    .title-highlight-blue {
+      color: #0066cc;
+    }
+
+    .authors {
+      font-size: 20px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .email-author {
+      color: #0066cc;        /* 파란색 */
+      text-decoration: none; /* 밑줄 제거 */
+    }
+
+    .email-author:hover {
+      text-decoration: underline; /* 호버 시 밑줄 */
+    }
+
+    .affiliation {
+      font-size: 16px;
+      color: #555;
+      margin-top: 10px;
+    }
+
+      .form-group {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+  }
+
+  .form-group label {
+    width: 120px;
+    margin-right: 10px;
+    font-weight: bold;
+  }
+
+  .form-inline-options {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+  }
+
+  input[type="radio"] {
+    margin-right: 5px;
+  }
+
+  input[type="number"],
+  button {
+    padding: 5px;
+    margin-top: 5px;
+  }
+
+  #result {
+    margin-top: 15px;
+    font-weight: bold;
+    color: #333;
+  }
+
+    .abstract {
+        margin-top: 30px;
+        text-align: left;
+        background-color: #fdfdfd;
+        padding: 20px;
+        border-left: 4px solid #0066cc;
+        border-radius: 4px;
+
+        max-width: 1200px;   
+        width: 100%;         
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .abstract h2 {
+        font-size: 20px;
+        color: #0066cc;
+        margin-bottom: 10px;
+      }
+
+      .abstract p {
+        font-size: 16px;
+        color: #333;
+        line-height: 1.6;
+      }
+
+      .abstract li {
+        margin-bottom: 10px;  /* ✅ 항목 간 간격 조절 */
+      }
+
+    .image-container {
+      margin: 30px 0;
+    }
+
+    .image-container img {
       width: 100%;
+      max-width: 600px;
+      border-radius: 8px;
+    }
+
+    form {
+      background-color: #fff;
+      padding: 20px;
+      margin-top: 40px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+    }
+
+    .button_click_container {
+      margin: 10px 0;
+    text-align: center; 
+    }
+
+    .button_click {
+        display: inline-block;
+        background-color: #333;
+        color: white;
+        padding: 10px 20px;
+        margin: 0 10px;
+        text-decoration: none;
+        border-radius: 6px;
+        font-size: 16px;
+    }
+
+
+    input {
+      width: 100%;
+      max-width: 400px;
+      padding: 10px;
+      margin: 10px 0;
       font-size: 16px;
     }
+
     .result {
-      margin-top: 20px;
       font-weight: bold;
+      margin-top: 15px;
       font-size: 18px;
-      color: #333;
+    }
+
+    .image-container img {
+      width: 100%;
+      max-width: 900px;  /* 원하는 최대 크기로 설정 */
+      display: block;
+      margin: 10 auto;    /* 가운데 정렬 */
+    }
+
+
+    .form-group {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0px;
+
+      justify-content: flex-start;
+      margin-bottom: 15px;
+
+      max-width: 500px;   /* ✅ 너비 제한 */
+      width: 100%;
+      margin-left: auto;  /* ✅ 수평 가운데 정렬 */
+      margin-right: auto;
+    }
+
+    .form-group > label {
+      width: 100px;
+      font-weight: bold;
+      text-align: center;
+      margin-right: 10px;
+    }
+
+    .radio-options {
+      display: flex;
+      align-items: right;
+      gap: 70px; /* Male과 Female 사이 간격 */
+    }
+
+    .radio-options label {
+      display: inline-flex;
+      align-items: center;
+      font-size: 16px;
+      gap: 15px;  
+      line-height: 1; 
+    }
+    .input-wrapper input {
+      width: 100%;
+      max-width: 300px;
+      padding: 8px;
+      font-size: 16px;
     }
   </style>
 </head>
 <body>
-  <h1>BMI & BRI Calculator</h1>
 
-  <label for="weight">Weight (kg):</label>
-  <input type="number" id="weight" placeholder="Enter your weight" />
+  <!-- Title -->
+  <h1>
+    <span class="title-highlight-red">Kolmogorov-Arnold Network </span> for <br>
+    <span class="title-highlight-blue"> Atherosclerotic Cardiovascular Disease </span> Prediction
+  </h1>
 
-  <label for="height">Height (cm):</label>
-  <input type="number" id="height" placeholder="Enter your height" />
+  <!-- Authors -->
+  <div class="authors">
+    <a href="mailto:highsg19101@gmail.com" class="email-author">Sang-Kyun Ko</a><sup>1</sup>, 
+    Sun-Wha Kim<sup>1</sup>, 
+    Whi Kwon<sup>1</sup>,
+    <a href="mailto:eandp303@gmail.com" class="email-author">Si-Hyuck Kang</a><sup>1,2,*</sup>, 
+    Chang-Hwan Yoon<sup>1,2</sup>, 
+    Tae-Jin Youn<sup>1,2</sup>, 
+    In-Ho Chae<sup>1,2</sup>
+  </div>
 
-  <label for="waist">Waist Circumference (cm):</label>
-  <input type="number" id="waist" placeholder="Enter your waist (optional)" />
+  <!-- Buttons -->
+  <div class="button_click_container">
+    <a class="button_click" href="https://www.medrxiv.org/content/10.1101/2025.05.25.25328329v1" target="_blank">📄 Paper (preprint)</a>
+    <a class="button_click" href="https://github.com/Highsg19101/kan_ascvd_code/tree/main" target="_blank">💻 Code</a>
+  </div>
 
-  <button onclick="calculate()">Calculate</button>
+  <!-- Affiliation -->
+  <div class="affiliation">
+    <p>
+       <sup>1</sup>Cardiovascular Center, Internal Medicine, Seoul National University Bundang Hospital<br>
+       <sup>2</sup>Department of Internal Medicine, Seoul National University
+    </p>
+  </div>
 
-  <div class="result" id="result"></div>
+  <!-- Abstract Section -->
+  <div class="abstract">
+    <h2>Abstract</h2>
+      <ul>
+        <li>Predicting 10-year atherosclerotic cardiovascular disease (ASCVD) risk is a clinically important task in cardiology.</li>
+        <li>In recent years, numerous studies have shown that machine learning (ML) models outperform conventional equation-based risk prediction models such as the Pooled Cohort Equations (PCE), PREVENT, and SCORE2.</li>
+        <li>Recently, the Kolmogorov–Arnold Network (KAN) has been proposed as a more interpretable alternative to traditional multi-layer perceptrons (MLPs), and this study develops a 10-year ASCVD risk prediction model using KAN.</li>
+        <li>This page provides your ASCVD risk estimation using a KAN model trained on health screening data from approximately 2 million Korean individuals.</li>
+        <li>You can enter your health screening information below to view your personalized risk prediction.</li>
+      </ul>
+  </div>
 
-  <script src="script.js"></script>
+  <!-- KAN-Based ASCVD Risk Calculator -->
+<form onsubmit="calculate(); return false;">
+  <h2>KAN-Based ASCVD Risk Calculator</h2>
+
+  <div class="form-group">
+    <label for="sex">Sex:</label>
+    <div class="radio-options">
+      <label>Male<input type="radio" name="sex" value="1" required></label>
+      <label>Female<input type="radio" name="sex" value="0"></label>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <label for="age">Age:</label>
+      <div class="input-wrapper">
+        <input type="number" id="age" placeholder="years" required>
+      </div>
+  </div>
+  
+
+   <div class="form-group">
+    <label for="sysbp">Systolic BP:</label>
+      <div class="iunput-wrapper">
+        <input type="number" id="sysbp" placeholder="(mmHg)" required>
+      </div>
+  </div>
+
+     <div class="form-group">
+    <label for="weight">Weight:</label>
+      <div class="iunput-wrapper">
+        <input type="number" id="weight" placeholder="Weight (kg)" required>
+      </div>
+  </div>
+
+
+  <input type="number" id="height" placeholder="Height (cm)" required><br>
+  <input type="number" id="waist" placeholder="Waist Circumference (cm, optional)"><br><br>
+
+  <button type="submit">Calculate</button>
+  <div id="result" class="result" style="margin-top:10px; font-weight:bold;"></div>
+</form>
+
+<script>
+  function calculate() {
+    const resultDiv = document.getElementById('result');
+    resultDiv.innerText = '';
+
+    // 성별, 당뇨 여부, 나이 가져오기
+    const sex = document.querySelector('input[name="sex"]:checked');
+    const diabetes = document.querySelector('input[name="diabetes"]:checked');
+    const age = parseInt(document.getElementById('age').value);
+
+    const weight = parseFloat(document.getElementById('weight').value);
+    const heightCm = parseFloat(document.getElementById('height').value);
+    const waistCm = parseFloat(document.getElementById('waist').value);
+
+    // 유효성 검사
+    if (!sex || !diabetes || isNaN(age) || isNaN(weight) || isNaN(heightCm)) {
+      resultDiv.innerText = 'Please fill in all required fields.';
+      return;
+    }
+
+    // 범위 검사
+    if (age < 40 || age > 79) {
+      resultDiv.innerText = 'Age must be between 40 and 79.';
+      return;
+    }
+    if (weight <= 30 || weight >= 200) {
+      resultDiv.innerText = 'Weight must be between 30 and 200 kg.';
+      return;
+    }
+    if (heightCm <= 100 || heightCm >= 250) {
+      resultDiv.innerText = 'Height must be between 100 and 250 cm.';
+      return;
+    }
+    if (waistCm && (waistCm <= 40 || waistCm >= 160)) {
+      resultDiv.innerText = 'Waist circumference must be between 40 and 160 cm.';
+      return;
+    }
+
+    const heightM = heightCm / 100;
+    const bmi = weight / (heightM * heightM);
+    const bmiRounded = bmi.toFixed(2);
+
+    // 예시 결과 출력
+    if (!waistCm || waistCm <= 0) {
+      resultDiv.innerText = `Your BMI is ${bmiRounded}.`;
+    } else {
+      const waistRatio = (waistCm / (2 * Math.PI)) / (0.5 * heightCm);
+      const bri = 364.2 - 365.5 * Math.sqrt(1 - Math.pow(waistRatio, 2));
+      const briRounded = bri.toFixed(2);
+      resultDiv.innerText = `Your BRI is ${briRounded}.`;
+    }
+
+    // 향후 여기에 ASCVD 계산기 로직 추가 가능
+    // console.log("sex:", sex.value, "diabetes:", diabetes.value, "age:", age);
+  }
+</script>
+  <!-- Image -->
+  <figure class="image-container">
+    <img src="./baseline_character.png" alt="Baseline characteristics" />
+    <figcaption>Table 1. Baseline characteristics of the study population and predictor variables used in each model. Eight risk factors listed in the upper panel are included in the primary model, while 14 variables in the lower panel are added in the extended model.</figcaption>
+  </figure>
+
+  <!-- Image -->
+  <figure class="image-container">
+    <img src="./min_max.png" alt="minmax_for_outlier" />
+    <figcaption>Table 2. Minimum and maximum thresholds used for outlier filtering. The thresholds were intentionally set leniently to exclude only a small number of data points.</figcaption>
+  </figure>
+
+
 </body>
 </html>
