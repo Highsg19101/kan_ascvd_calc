@@ -52,7 +52,7 @@
       margin-top: 10px;
     }
 
-      .form-group {
+  .form-group {
     margin-bottom: 10px;
     display: flex;
     align-items: center;
@@ -213,6 +213,12 @@
       padding: 8px;
       font-size: 16px;
     }
+
+      .centered-list {
+    list-style-position: inside; /* ✅ 점을 텍스트 안쪽으로 가져옴 */
+    text-align: center;          /* ✅ 텍스트 + 점 모두 가운데 정렬 */
+    padding: 0;
+  }
   </style>
 </head>
 <body>
@@ -250,7 +256,7 @@
 
   <!-- Abstract Section -->
   <div class="abstract">
-    <h2>About this page🫀</h2>
+    <h1>About 🫀</h1>
       <ul>
         <li>Predicting 10-year atherosclerotic cardiovascular disease (ASCVD) risk is a clinically important task in cardiology.</li>
         <li>This page estimates your 10-year ASCVD risk using a Kolmogorov–Arnold Network trained on health screening data from about 2 million Korean adults.</li>
@@ -265,8 +271,8 @@
   <div class="form-group">
     <label for="sex">Sex:</label>
     <div class="radio-options">
-      <label>Male<input type="radio" name="sex" value="1" required></label>
-      <label>Female<input type="radio" name="sex" value="0"></label>
+      <label>Male<input type="radio" name="sex" value="0" required></label>
+      <label>Female<input type="radio" name="sex" value="1"></label>
     </div>
   </div>
   
@@ -323,6 +329,16 @@
     </div>
   </div>
 
+  Providing information on the following 14 variables can improve the accuracy of your risk prediction. <br> 
+  Please enter the values below if available.
+
+<div class="form-group">
+  <label for="egfr">Glomerular Filtration Rate:</label>
+  <div class="input-wrapper">
+    <input type="number" id="egfr" placeholder="(mL/min/1.73m²)">
+  </div>
+</div>
+
   <button type="submit" style="padding: 15px 30px; font-size: 18px;">Calculate</button>
   <div id="result" class="result" style="margin-top:10px; font-weight:bold;"></div>
 
@@ -330,6 +346,15 @@
 
 
 <script src="script.js"></script>
+
+
+<h2 style="text-align: center;">Interpretation of Risk Estimates</h2>
+<ul class="centered-list">
+  <li><strong>Low risk:</strong> &lt;5%</li>
+  <li><strong>Borderline risk:</strong> 5% to 7.4%</li>
+  <li><strong>Intermediate risk:</strong> 7.5% to 19.9%</li>
+  <li><strong>High risk:</strong> ≥20%</li>
+</ul>
 
   <!-- Image -->
   <figure class="image-container">
@@ -343,6 +368,37 @@
     <figcaption>Table 2. Minimum and maximum thresholds used for outlier filtering. The thresholds were intentionally set leniently to exclude only a small number of data points.</figcaption>
   </figure>
 
+
+  <div class="kan-info-section">
+  <h2> Who Should Use This Calculator</h2>
+  <p>
+    This calculator is designed for adults aged 30–79 years who do not have a history of cardiovascular disease, such as coronary artery disease, stroke, or heart failure.  
+    It aims to assist both clinicians and individuals in evaluating preventive strategies, including lifestyle modifications and the consideration of medical therapies.  
+  </p>
+
+  <h2>
+    Contact
+  </h2>
+  <p>
+    For technical inquiries, contact highsg[at]gmail.com. For clinical or medical inquiries, contact eandp303[at]gmail.com.
+  </p>
+
+  <h2>
+    Acknowledgements
+  </h2>
+  <p>
+    This research was supported by the Bio&Medical Technology Development Program of the National Research Foundation (NRF) funded by the Korean government (MSIT) (NO. RS-2023-00222910) (RS-2025-00517929).
+  </p>
+</div>
+
+
+
+    <hr>
+    <br><br><br><br><br><br>
+
+    <div style="text-align: center;">
+        <a>© 2025 Sang-Kyun Ko and Si-Hyuck Kang. This page accompanies the paper: <br> “<a href="https://www.medrxiv.org/content/10.1101/2025.05.25.25328329v1"> Kolmogorov-Arnold Network for Atherosclerotic Cardiovascular Disease Risk Prediction </a>”.
+    </div>
 
 </body>
 </html>
