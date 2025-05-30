@@ -94,8 +94,8 @@
         border-left: 4px solid #0066cc;
         border-radius: 4px;
 
-        max-width: 1200px;   
-        width: 100%;         
+        max-width: 1000px;   
+        width: 80%;         
         margin-left: auto;
         margin-right: auto;
       }
@@ -215,8 +215,8 @@
     }
 
       .centered-list {
-    list-style-position: inside; /* ✅ 점을 텍스트 안쪽으로 가져옴 */
-    text-align: center;          /* ✅ 텍스트 + 점 모두 가운데 정렬 */
+    list-style-position: inside;
+    text-align: center;
     padding: 0;
   }
   </style>
@@ -258,9 +258,9 @@
   <div class="abstract">
     <h1>About 🫀</h1>
       <ul>
-        <li>Predicting 10-year atherosclerotic cardiovascular disease (ASCVD) risk is a clinically important task in cardiology.</li>
+        <li>Estimating the 10-year risk of atherosclerotic cardiovascular disease (ASCVD) is a clinically important task in cardiology.</li>
         <li>This page estimates your 10-year ASCVD risk using a Kolmogorov–Arnold Network trained on health screening data from about 2 million Korean adults.</li>
-        <li>You can enter your health screening information below to view your personalized risk prediction.</li>
+        <li>Enter your health screening information below to receive your personalized risk prediction.</li>
       </ul>
   </div>
 
@@ -329,17 +329,37 @@
     </div>
   </div>
 
-  Providing information on the following variables can improve the accuracy of your risk prediction. <br> 
-  Please enter the values below if available. (Updated planned)
+  Providing information on the following 14 variables can improve the accuracy of your risk prediction. <br> 
+  Please enter the values below if available.
 
 <div class="form-group">
-  <label for="egfr">eGFR:</label>
+  <label for="egfr">Glomerular Filtration Rate:</label>
   <div class="input-wrapper">
     <input type="number" id="egfr" placeholder="(mL/min/1.73m²)">
   </div>
 </div>
+<!--
+<div class="form-group">
+  <label for="bmi">BMI:</label>
+  <div class="input-wrapper">
+    <input type="number" id="bmi" placeholder="(kg/m2)">
+  </div>
+</div>
 
+<div class="form-group">
+  <label for="diabp">Diastolic BP:</label>
+  <div class="input-wrapper">
+    <input type="number" id="diabp" placeholder="((mmHg)">
+  </div>
+</div>
 
+<div class="form-group">
+  <label for="urn">Urine Protein:</label>
+  <div class="input-wrapper">
+    <input type="number" id="urn" placeholder="(Level 1-6)">
+  </div>
+</div>
+-->
 
 
 
