@@ -266,7 +266,7 @@
 
   <!-- KAN-Based ASCVD Risk Calculator -->
 <form onsubmit="calculate(); return false;">
-  <h2>ASCVD Risk Calculator</h2>
+  
 
   <div class="form-group">
     <label for="sex">Sex:</label>
@@ -329,8 +329,15 @@
     </div>
   </div>
 
-  Providing information on the following 14 variables can improve the accuracy of your risk prediction. <br> 
-  Please enter the values below if available.
+
+
+  <button type="submit" style="padding: 15px 30px; font-size: 18px;">Calculate</button>
+  <div id="result" class="result" style="margin-top:10px; font-weight:bold;"></div>
+
+
+  <hr>
+  Providing information on the following 14 variables can improve the accuracy of your risk prediction. 
+  Please enter the values below if available. (To be updated)
 
 <div class="form-group">
   <label for="egfr">Glomerular Filtration Rate:</label>
@@ -360,11 +367,6 @@
   </div>
 </div>
 -->
-
-
-
-  <button type="submit" style="padding: 15px 30px; font-size: 18px;">Calculate</button>
-  <div id="result" class="result" style="margin-top:10px; font-weight:bold;"></div>
 
 </form>
 

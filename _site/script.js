@@ -69,7 +69,7 @@ function KAN_primary_calculateTotalValues({ sex, smk, diabetes, htn, age, sysbp,
 }
 
 function KAN_extended_calculateProductValues({ sex, smk, diabetes, htn, age, sysbp, totchole, hdlchole, 
-                                               egfr,  }) {
+                                               egfr  }) {
   return (
     sex.value *
     smk.value *
