@@ -331,21 +331,18 @@
 
 
 
-  <button type="submit" style="padding: 15px 30px; font-size: 18px;">Calculate</button>
-  <div id="result" class="result" style="margin-top:10px; font-weight:bold;"></div>
-
 
   <hr>
   Providing information on the following 14 variables can improve the accuracy of your risk prediction. 
   Please enter the values below if available. (To be updated)
 
 <div class="form-group">
-  <label for="egfr">Glomerular Filtration Rate:</label>
+  <label for="egfr">eGFR:</label>
   <div class="input-wrapper">
     <input type="number" id="egfr" placeholder="(mL/min/1.73m²)">
   </div>
 </div>
-<!--
+
 <div class="form-group">
   <label for="bmi">BMI:</label>
   <div class="input-wrapper">
@@ -356,17 +353,91 @@
 <div class="form-group">
   <label for="diabp">Diastolic BP:</label>
   <div class="input-wrapper">
-    <input type="number" id="diabp" placeholder="((mmHg)">
+    <input type="number" id="diabp" placeholder="(mmHg)">
   </div>
 </div>
 
-<div class="form-group">
-  <label for="urn">Urine Protein:</label>
-  <div class="input-wrapper">
-    <input type="number" id="urn" placeholder="(Level 1-6)">
+  <div class="form-group">
+    <label for="urn">Urine Protein:</label>
+    <div class="input-wrapper">
+      <input type="number" id="urn" placeholder="(Level 1-6)">
+    </div>
   </div>
-</div>
--->
+
+  <div class="form-group">
+    <label for="tg">Triglycerides:</label>
+    <div class="input-wrapper">
+      <input type="number" id="tg" placeholder="(mg/dL)">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="hgb">Hemoglobin:</label>
+    <div class="input-wrapper">
+      <input type="number" id="hgb" placeholder="(g/dL)">
+    </div>
+  </div>
+
+
+  <div class="form-group">
+    <label for="sgot">AST:</label>
+    <div class="input-wrapper">
+      <input type="number" id="sgot" placeholder="(U/L)">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="sgpt">ALT:</label>
+    <div class="input-wrapper">
+      <input type="number" id="sgpt" placeholder="(U/L)">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="ggt">GGT:</label>
+    <div class="input-wrapper">
+      <input type="number" id="ggt" placeholder="(U/L)">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="fbs">Fasting blood sugar:</label>
+    <div class="input-wrapper">
+      <input type="number" id="fbs" placeholder="(mg/dL)">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="ldl">Low-Density Lipoprotein:</label>
+    <div class="input-wrapper">
+      <input type="number" id="ldl" placeholder="(mg/dL)">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="wc">Waist circumference:</label>
+    <div class="input-wrapper">
+      <input type="number" id="wc" placeholder="(cm)">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="ctrb">Premium Quantiles:</label>
+    <div class="input-wrapper">
+      <input type="number" id="ctrb" placeholder="(0-20)">
+    </div>
+  </div>
+
+   <div class="form-group">
+    <label for="addr">Address(code):</label>
+    <div class="input-wrapper">
+      <input type="number" id="addr" placeholder="(257 categories)">
+    </div>
+  </div>
+
+
+  <button type="submit" style="padding: 15px 30px; font-size: 18px;">Calculate</button>
+  <div id="result" class="result" style="margin-top:10px; font-weight:bold;"></div>
 
 </form>
 
